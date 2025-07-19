@@ -1,0 +1,9 @@
+[package]
+name = "ddc-brightness-ctl"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ddc = "0.2.2"
+ddc-hi = "0.4.1"
+lexopt = "0.3.1"
