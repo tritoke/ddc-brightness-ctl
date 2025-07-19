@@ -159,11 +159,11 @@ fn change_brightness(display: &mut Display, display_no: usize, change: Brightnes
         .as_deref()
         .unwrap_or("Unknown Model");
 
-    let disp = format!("{display_no} ({model})");
+    let disp = format!("display {display_no} ({model})");
 
     let luminance_feature_code = 0x10;
     let Ok(vcp) = display.handle.get_vcp_feature(luminance_feature_code) else {
-        eprintln!("{RED}Timed out waiting for response from display {disp}{RESET}");
+        eprintln!("{RED}Timed out waiting for response from {disp}{RESET}");
         return;
     };
     display.handle.sleep();
@@ -180,7 +180,7 @@ fn change_brightness(display: &mut Display, display_no: usize, change: Brightnes
         .handle
         .set_vcp_feature(luminance_feature_code, new_value)
     {
-        eprintln!("{RED}Failed to set brightness for display {disp}: {e}{RESET}");
+        eprintln!("{RED}Failed to set brightness for {disp}: {e}{RESET}");
     }
 
     display.handle.sleep();
