@@ -7,3 +7,9 @@ edition = "2024"
 ddc = "0.2.2"
 ddc-hi = "0.4.1"
 lexopt = "0.3.1"
+
+# try to make the binary a bit smaller
+[profile.release]
+strip = true
+opt-level = "s"
+lto = true
