@@ -103,9 +103,6 @@ fn main() -> ExitCode {
     let mut displays = Display::enumerate();
 
     if list {
-        for (i, disp) in displays.iter().enumerate() {
-            println!("  - [{i}]: {:?}", disp.info);
-        }
         println!("Detected displays:");
         for (i, disp) in displays.iter().enumerate() {
             println!(
