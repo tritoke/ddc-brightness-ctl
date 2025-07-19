@@ -113,17 +113,23 @@ fn parse_args() -> Result<Args, lexopt::Error> {
             }
             Long("get") => action = Action::Get,
             Short('l') | Long("list") => list = true,
+            Short('v') | Long("version") => {
+                println!("{} v{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+                std::process::exit(0);
+            }
             Short('h') | Long("help") => {
-                println!("Usage: ddc-brightness-ctl [-d|--display=NUM] [-l|--list] [--inc=NUM] [--dec=NUM] [--set=NUM]");
+                println!("Usage: ddc-brightness-ctl [-h|--help] [-v|--version] [-d|--display=NUM] [-l|--list] [--inc=NUM] [--dec=NUM] [--set=NUM]");
                 println!();
                 println!("Options:");
-                println!("  -d, --display: optionally specify which display to change");
-                println!("                 default operates on all displays");
-                println!("  -l,    --list: list all detected displays and metadata");
-                println!("          --get: get the current brightness");
-                println!("          --set: set brightness to NUM percent");
-                println!("          --inc: increase brightness by NUM percent");
-                println!("          --dec: decrease brightness by NUM percent");
+                println!("  -d,    --display: optionally specify which display to change");
+                println!("                    default operates on all displays");
+                println!("  -l,       --list: list all detected displays and metadata");
+                println!("  -v,    --version: get the program version");
+                println!("  -h,       --help: print this help message");
+                println!("             --get: get the current brightness");
+                println!("             --set: set brightness to NUM percent");
+                println!("             --inc: increase brightness by NUM percent");
+                println!("             --dec: decrease brightness by NUM percent");
                 std::process::exit(0);
             }
             _ => return Err(arg.unexpected()),
